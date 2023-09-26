@@ -1,0 +1,6 @@
+sentence-transformers
+pandas
+streamlit
+matplotlib
+plotly
+nomic
