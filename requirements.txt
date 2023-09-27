@@ -4,3 +4,4 @@ streamlit
 matplotlib
 plotly
 nomic
+sklearn
