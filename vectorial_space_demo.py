@@ -28,6 +28,14 @@ def add_data_to_info():
     st.session_state.my_key = ""
 
 
+def remove_data_from_info():
+    remove_key = st.session_state.remove_key
+    temp_count = st.session_state.count
+    temp_count = temp_count[temp_count["key"] != remove_key]
+    st.session_state.count = temp_count
+    st.session_state.remove_key = ""
+
+
 def search():
     vector_search = model.encode(st.session_state.search_box)
     temp_count = st.session_state.count
@@ -45,7 +53,9 @@ if "search_result" not in st.session_state:
     st.session_state.search_result = pd.DataFrame(columns=["key", "similarity"])
 
 st.text_input("Add item", key="my_key", on_change=add_data_to_info)
+st.text_input("Item to remove", key="remove_key", on_change=remove_data_from_info)
 st.write(st.session_state.count)
+
 
 st.title("Search in the vectorial space")
 st.text_input("Search box", key="search_box", on_change=search)
